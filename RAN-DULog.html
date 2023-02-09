@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reign Core</title>
+  <!-- Favicon -->
+  <link rel="apple-touch-icon" sizes="180x180" href="./img/new-ui/favicon/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="./img/new-ui/favicon/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="./img/new-ui/favicon/favicon-16x16.png" />
+  <link rel="shortcut icon" type="image/png" href="./img/new-ui/favicon/favicon.ico" />
+  <link rel="manifest" href="./img/new-ui/favicon/site.webmanifest" />
+  <!-- css -->
+  <link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="./style/style.css">
+  <link rel="stylesheet" href="./style/jslocal.css" />
+</head>
+
+<body>
+  <main class="u-main">
+    <article class="l-ran l-ran--page">
+      <header class="l-header l-header--page">
+        <h1 class="l-header__title">RAN Log</h1>
+        <div class="w-100 d-flex align-items-center justify-content-between">
+          <div class="c-tabs">
+            <a class="c-tabs__tab active">DU Log</a>
+            <a class="c-tabs__tab">L1 Log</a>
+            <a class="c-tabs__tab d-none">CBRS Log</a>
+          </div>
+          <div class="l-header__action">
+            <button id="exportLog" type="button" class="e-btn e-btn--action">
+              Export
+            </button>
+          </div>
+        </div>
+      </header>
+      <section class="l-ran__content u-content">
+        <div class="l-ran__block" style="white-space: pre-wrap;">
+        </div>
+      </section>
+    </article>
+  </main>
+  <script src="./js/apiJs/jquery-3.6.1.min.js"></script>
+  <script src="./sweetalert2/sweetalert2.all.min.js"></script>
+  <script src="./bootstrap/js/bootstrap.bundle.js"></script>
+  <script src="./js/moment.js"></script>
+  <script>
+    const version = new Date().getTime()
+    // default module
+    document.write(`<script type="module" src="./js/module/timeOut.js?v=${version}"><\/script>`);
+    document.write(`<script src="./js/apiJs/restfulApi.js?v=${version}"><\/script>`);
+    document.write(`<script src="./js/realtimeApi.js?v=${version}"><\/script>`);
+    // page function
+    document.write(`<script type="module" src="./js/pages/RANLog/RANLog.js?v=${version}"><\/script>`);
+  </script>
+</body>
+
+</html>

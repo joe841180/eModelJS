@@ -1,0 +1,333 @@
+.l-header {
+  width: 100%;
+  height: $height__header;
+  padding-left: 2.5rem;
+  padding-right: 1.875rem;
+
+  background: $color__bg;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  &--page {
+    height: max-content;
+    padding: 1.625rem 1.875rem 1.875rem 1.875rem;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  &__title {
+    margin-bottom: 2.3125rem;
+    @include text(normal, 700, 1.1875rem);
+    color: $color__font--light;
+  }
+  &__subtitle {
+    @include text(normal, 700, 1.1875rem);
+    color: $color__font--light;
+  }
+  &__action {
+    display: flex;
+    align-items: center;
+  }
+  &__menu {
+    transform: translate3d(6.85rem, $top__dropdown, 0) !important;
+    &::after {
+      top: $top__dropdown-triangle;
+      left: 3.875rem;
+    }
+    &--end {
+      transform: translate3d(0, $top__dropdown, 0) !important;
+      &::after {
+        left: auto;
+        right: 0.75rem;
+      }
+    }
+  }
+}
+
+.c-sidebar {
+  $_: &;
+  width: $width__sidebar;
+  min-width: $width__sidebar;
+  max-width: $width__sidebar;
+  height: 100%;
+  padding: 1.875rem;
+
+  background: $color--primary;
+
+  overflow-y: auto;
+  &__icon {
+    @include square(1.5rem, 0);
+    margin-right: 1rem;
+
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    &[data-icon="overview"] {
+      background-image: url("../img/new-ui/icon/ic_overview_24dp.svg");
+    }
+    &[data-icon="alert"] {
+      background-image: url("../img/new-ui/icon/ic_alert_24dp.svg");
+    }
+    &[data-icon="5gc"] {
+      background-image: url("../img/new-ui/icon/ic_5gc_24dp.svg");
+    }
+    &[data-icon="ran"] {
+      background-image: url("../img/new-ui/icon/ic_ran_24dp.svg");
+    }
+    &[data-icon="router"] {
+      background-image: url("../img/new-ui/icon/ic_router_24dp.svg");
+    }
+    &[data-icon="ue"] {
+      background-image: url("../img/new-ui/icon/ic_ue_24dp.svg");
+    }
+  }
+  &__text {
+    @include text(normal, 400, 150%);
+    color: $color__font--subtitle;
+  }
+  &__item {
+    margin-bottom: 1rem;
+    @include clear(accordion);
+    &.active {
+      // 非accordion的active狀態 (accordion是用.collapsed)
+      #{$_}__text {
+        color: $color__action;
+      }
+      #{$_}__icon {
+        &[data-icon="overview"] {
+          background-image: url("../img/new-ui/icon/ic_overview_active_24dp.svg");
+        }
+        &[data-icon="alert"] {
+          background-image: url("../img/new-ui/icon/ic_alert_active_24dp.svg");
+        }
+        &[data-icon="5gc"] {
+          background-image: url("../img/new-ui/icon/ic_5gc_24dp.svg");
+        }
+        &[data-icon="ran"] {
+          background-image: url("../img/new-ui/icon/ic_ran_active_24dp.svg");
+        }
+        &[data-icon="router"] {
+          background-image: url("../img/new-ui/icon/ic_router_24dp.svg");
+        }
+        &[data-icon="ue"] {
+          background-image: url("../img/new-ui/icon/ic_ue_24dp.svg");
+        }
+      }
+    }
+  }
+  &__btn {
+    @include clear(accordion);
+    width: 100%;
+    height: 2.8125rem;
+    padding: 0.75rem 0;
+
+    display: flex;
+    align-items: center;
+    @include cursor(pointer);
+    &--arrow {
+      position: relative;
+      &::after {
+        width: 0.75rem;
+        height: 0.5rem;
+        @include pesudo("");
+        background-image: url("../img/icon/arrow.svg");
+        background-size: contain;
+        background-position: center;
+        top: 50%;
+        right: 0;
+        left: auto;
+        transform: translateY(-50%);
+      }
+      &:not(.collapsed) {
+        @include clear(btn);
+        position: relative;
+        &::after {
+          @extend #{$_}__btn--arrow::after;
+          transform: translateY(-50%) rotate(180deg);
+        }
+        #{$_}__text {
+          color: $color__font--light;
+        }
+      }
+    }
+  }
+  &__sub-btn {
+    @extend #{$_}__btn;
+    margin-bottom: 1rem;
+    padding-left: 2.5rem;
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+    &.active {
+      background: transparent;
+      #{$_}__icon {
+        &[data-icon="ran"] {
+          background-image: url("../img/new-ui/icon/ic_ran_active_24dp.svg");
+        }
+        &[data-icon="router"] {
+          background-image: url("../img/new-ui/icon/ic_router_24dp.svg");
+        }
+      }
+      #{$_}__text {
+        color: $color--action;
+      }
+    }
+  }
+  &__accordion {
+    padding: 0;
+    margin-top: 1rem;
+  }
+  &__logo {
+    &--main {
+      width: max-content;
+      height: 3.125rem;
+    }
+    &--core {
+      width: 10rem;
+      height: max-content;
+      margin: 1.75rem 0 2rem 0;
+    }
+  }
+  &__hr {
+    width: 100%;
+    height: 0.0625rem;
+    margin-bottom: 2rem;
+
+    background: $color__hr;
+  }
+}
+
+.c-notification {
+  $padding__item: 0.5rem 0 0.5rem 1.25rem;
+
+  position: relative;
+  &__toggle {
+    @include square(2.5rem, 50%);
+    padding: 0;
+    margin: 0 1.375rem;
+
+    display: block;
+
+    position: relative;
+    &:hover,
+    &:focus,
+    &:active {
+      background: #101b1e;
+    }
+  }
+  &__badge {
+    @include square(1.125rem, 50%);
+
+    background: $color--action;
+    @include text(xx-small, 500, 120%);
+    color: $color__font--light;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: absolute;
+    top: 0.875rem;
+    left: auto;
+    right: 0.25rem;
+  }
+  &__img {
+    @include square(1.5rem, 0);
+
+    background-image: url("../img/new-ui/icon/ic_notifications_24dp.svg");
+    background-size: contain;
+    background-position: 0.25rem center;
+    background-repeat: no-repeat;
+
+    display: block;
+  }
+  &__menu {
+    width: $width__notification;
+    height: max-content;
+    max-height: $height__notification;
+    padding: 0.375rem 0;
+
+    background: $color--primary;
+    border: none;
+    border-radius: $radius__dropdown;
+
+    transform: translate3d(1.5rem, $top__dropdown, 0) !important;
+
+    position: relative;
+
+    overflow-y: auto;
+    @include scrollbar("");
+    &::after {
+      @extend .c-dropdown__menu::after;
+      top: $top__dropdown-triangle;
+      left: auto;
+      right: 3.5rem;
+    }
+  }
+  &__icon {
+    @include square(1.5rem, 0);
+
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    &[data-icon="restart"] {
+      background-image: url("../img/new-ui/icon/ic_restart_24dp.svg");
+    }
+    &[data-icon="alert"] {
+      background-image: url("../img/new-ui/icon/ic_alert_2_24dp.svg");
+    }
+    &[data-icon="new_version"] {
+      background-image: url("../img/new-ui/icon/ic_new_version_24dp.svg");
+    }
+  }
+  &__item {
+    width: 100%;
+    padding: 0.875rem 1.25rem;
+    height: max-content;
+    max-height: 10.75rem;
+
+    border-bottom: 0.0625rem solid $color__hr;
+
+    display: flex;
+    flex-direction: column;
+    &:last-of-type {
+      border: none;
+    }
+  }
+  &__heading {
+    margin-bottom: 1rem;
+
+    display: flex;
+    align-items: center;
+  }
+  &__title {
+    margin-left: 0.5rem;
+
+    @include text(small, 700, 114%);
+    color: $color__font--light;
+  }
+  &__subtitle {
+    margin-bottom: 0.5rem;
+
+    @include text(extra-small, 400, 116%);
+    color: $color--muted3;
+  }
+  &__text {
+    margin: 0.875rem 0;
+
+    @include text(small, 400, 114%);
+    color: $color__font--subtitle;
+  }
+  &__action {
+    height: max-content;
+    margin-left: auto;
+
+    @include text(small, 500, 114%);
+  }
+}

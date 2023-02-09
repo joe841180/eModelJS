@@ -1,0 +1,639 @@
+.l-home {
+  width: 100%;
+  overflow-y: auto;
+  .l-header {
+    padding-left: 1.875rem;
+  }
+  &__content {
+    width: 100%;
+    height: 100%;
+    padding: 0.625rem 1.875rem 0 1.875rem;
+
+    background: $color__bg;
+
+    overflow-x: auto;
+  }
+  &__title {
+    margin-bottom: 1.375rem;
+
+    @include heading(h5, 500);
+    color: $color__font--light;
+  }
+  &__btn {
+    padding: 0.375rem 1.5rem;
+    @include text(small, 500, 114%);
+  }
+  &__tag {
+    margin-left: 1.6875rem;
+  }
+  &__tags {
+    display: flex;
+    align-items: center;
+
+    overflow-x: auto;
+    @include scrollbar(hidden);
+  }
+  &__heading {
+    display: flex;
+    align-items: center;
+  }
+  &__block {
+    $margin__block: 1.25rem;
+    min-width: 60.75rem;
+    margin-bottom: $margin__block;
+
+    background: $color__block;
+    border-radius: $radius__block;
+
+    display: flex;
+    &:first-of-type {
+      margin-top: $margin__block;
+    }
+  }
+  &__wrapper {
+    padding: 1.25rem 1.875rem 1.4375rem 1.25rem;
+  }
+  &__table {
+    margin-bottom: 1.875rem;
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+  }
+  &__row {
+    &[data-row="1"] {
+      grid-template-columns: 1fr 1.5fr 1fr 1fr 4fr;
+    }
+    &[data-row="2"] {
+      grid-template-columns: 5fr 4.5fr;
+    }
+  }
+  &__col {
+    margin-right: 2.5rem;
+    &:last-of-type {
+      margin-right: 0;
+    }
+  }
+  &__section {
+    width: 100%;
+
+    overflow-x: auto;
+    overflow-y: visible;
+  }
+  &__checkbox {
+    $width__block: 8.75rem;
+    width: $width__block;
+    min-width: $width__block;
+    padding: 1.25rem 1.25rem 1.25rem 1.125rem;
+
+    border-left: $border--hr;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  &__section {
+    margin-bottom: 5.125rem;
+  }
+  &__empty {
+    margin-bottom: 8.125rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  &__img {
+    @include square(11.25rem, 0);
+    margin-bottom: 1.875rem;
+  }
+  &__text {
+    width: 25.9375rem;
+
+    @include text(normal, 400, 150%);
+    color: $color__font--light;
+    text-align: center;
+  }
+  &__action {
+    margin-top: 1.25rem;
+  }
+  .c-modal {
+    $_: ".c-modal";
+    &__dialog {
+      max-width: 39.875rem;
+    }
+    &__action {
+      padding: 1.25rem 1.875rem 1.25rem 0;
+    }
+    &__hint {
+      @include square(2rem, 0);
+      margin: 1.5rem auto;
+    }
+    &__link {
+      color: $color__font--light;
+      text-decoration: underline;
+      &:hover {
+        color: $color__font--light;
+      }
+    }
+    &__title {
+      margin-bottom: 2.5rem;
+
+      @include text(normal, 700, 118%);
+      color: $color__font--light;
+    }
+    &__wrapper {
+      padding: 1.875rem 1.875rem 2.5rem 1.875rem;
+    }
+    &__input {
+      background: $color--muted1;
+      border-color: $color__font--subtitle;
+      &:hover,
+      &:focus,
+      &:active {
+        background: $color--muted1;
+      }
+    }
+    &--aside {
+      $width__aside: 15rem;
+      #{$_}__dialog {
+        // max-width: 43.75rem;
+        max-width: 50rem;
+      }
+      #{$_}__body {
+        height: 37.5rem;
+      }
+      #{$_}__aside {
+        width: $width__aside;
+        min-width: $width__aside;
+        padding-right: 0;
+      }
+      #{$_}__title {
+        margin-bottom: 1.875rem;
+      }
+      #{$_}__item {
+        margin-bottom: 1.25rem;
+        &:last-of-type {
+          margin-bottom: 0;
+        }
+      }
+      #{$_}__tab {
+        @include clear(btn);
+        padding: 0;
+
+        @include text(small, 400, 116%);
+        color: $color__font--subtitle;
+
+        display: flex;
+        align-items: center;
+        @include cursor(pointer);
+        &.active {
+          color: $color--action;
+          #{$_}__icon {
+            &[data-icon="account"] {
+              background-image: url("../img/new-ui/icon/asset_icon_account_active.svg");
+            }
+            &[data-icon="permissions"] {
+              background-image: url("../img/new-ui/icon/asset_permissions_active.svg");
+            }
+          }
+        }
+      }
+      #{$_}__icon {
+        @include square(1.5rem, 0);
+        margin-right: 0.875rem;
+
+        display: inline-block;
+        &[data-icon="account"] {
+          background-image: url("../img/new-ui/icon/asset_icon_account.svg");
+        }
+        &[data-icon="permissions"] {
+          background-image: url("../img/new-ui/icon/asset_permissions.svg");
+        }
+      }
+      #{$_}__wrapper {
+        height: 100%;
+        padding: 0;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+      #{$_}__avatar {
+        @include square(3.375rem, 50%);
+        margin-bottom: 1.5rem;
+
+        background: $color--secondary;
+
+        @include heading(h4, 700);
+        line-height: 116%;
+        color: $color__font--light;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+  }
+}
+
+.l-graph {
+  $_: &;
+  margin: 3.75rem 0;
+
+  display: flex;
+  flex-direction: column;
+  $height__line: 0.1875rem;
+  $padding__block: 0.75rem;
+  overflow: visible;
+  &__icon {
+    margin-bottom: 0.2725rem;
+    @include square(1.875rem, 0);
+  }
+  &__text {
+    @include text(small, 400, 171%);
+    color: $color__font--light;
+    text-align: center;
+  }
+  &__popover {
+    height: max-content;
+    position: relative;
+  }
+  &__row {
+    margin-bottom: 0.5rem;
+
+    display: flex;
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+    &--single {
+      #{$_}__item {
+        margin-bottom: 0;
+      }
+    }
+    &--multiple {
+      align-items: stretch;
+    }
+  }
+  &__col {
+    display: flex;
+    flex-direction: column;
+    &--end {
+      padding: $padding__block + $height__line 0 0 0;
+    }
+  }
+  $width__placeholder: 2.5rem;
+  $width__item: 5.5rem;
+  $width__hr: 0.75rem;
+  $width__item--title: 4rem;
+  $height__item: 5.5rem;
+  $height__item--sm: 2.5rem;
+  $width__item--end: 6.25rem;
+  $width__line--center: 1.25rem;
+  $width__line--end: 3.25rem;
+  $margin__block: 2.5rem;
+  &__wrapper {
+    height: max-content;
+    margin-bottom: $margin__block;
+
+    display: flex;
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+  }
+  &__group {
+    padding: $padding__block;
+
+    border: $height__line solid $color__block;
+    border-radius: $radius__block;
+
+    display: flex;
+    align-items: flex-start;
+    &:hover ~ .c-popover--center {
+      display: block;
+
+      top: 0;
+      left: 6.25rem;
+    }
+    &::before {
+      @include pesudo("");
+      width: $width__placeholder;
+      height: $height__line;
+
+      background: $color__block;
+
+      top: 50%;
+      left: auto;
+      right: 100%;
+      transform: translateY(-50%);
+    }
+    &--top {
+      &::before {
+        top: 3.6rem;
+        transform: none;
+      }
+    }
+  }
+  &__item {
+    margin-bottom: 0.5rem;
+    @include square($width__item, 0.25rem);
+    min-width: $width__item;
+    height: $height__item--sm;
+
+    background: $color__block;
+    border-radius: $radius__block;
+
+    @include text(small, 700, 114%);
+    color: $color__font--light;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    position: relative;
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+    &.online {
+      @include badge(status, online);
+    }
+    &.error {
+      @include badge(status, error);
+    }
+    &.offline {
+      @include badge(status, offline);
+    }
+    &--title {
+      width: $width__item--title;
+      height: $height__item;
+      margin-right: 0;
+      margin-bottom: 0;
+
+      background: transparent;
+    }
+    &--start {
+      height: $height__item;
+      margin-top: $padding__block + $height__line;
+      &::before {
+        @extend .l-graph__group::before;
+        width: $width__placeholder;
+
+        left: 100%;
+      }
+    }
+    &--center {
+      margin-left: $width__line--center;
+      &::before {
+        @extend .l-graph__group::before;
+        width: $width__line--center;
+      }
+    }
+    &--end {
+      width: $width__item--end;
+      margin-left: $width__line--end - $padding__block - $height__line;
+      &::before {
+        @extend .l-graph__group::before;
+        width: $width__line--end;
+      }
+      &:hover ~ .c-popover--end {
+        display: block;
+
+        top: 0;
+        left: 100%;
+      }
+    }
+    &--block {
+      height: 100%;
+      margin-bottom: 0;
+    }
+  }
+  &__placeholder {
+    width: $width__placeholder;
+    height: auto;
+    margin-top: $width__item / 2 + $padding__block + $height__line;
+    margin-bottom: $width__item / 2 + $padding__block + $height__line * 2;
+    &--line {
+      border-left: $height__line solid $color__block;
+    }
+  }
+}
+
+.c-popover {
+  $_: &;
+  width: 16.25rem;
+  padding: 1.25rem;
+
+  background: $color--primary;
+  border-radius: $radius__block;
+
+  display: none;
+
+  position: absolute;
+
+  z-index: 1;
+  &.online {
+    border: $border__popover $color--online;
+  }
+  &.error {
+    border: $border__popover $color--error;
+  }
+  &.offline {
+    border: $border__popover $color--offline;
+  }
+  &--end {
+    #{$_}__row {
+      grid-template-columns: 1fr 2fr;
+    }
+  }
+  &__title {
+    margin-bottom: 1.25rem;
+
+    @include text(small, 700, 114%);
+    color: $color__font--light;
+  }
+  &__row {
+    margin-bottom: 1.25rem;
+
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+  }
+  &__col {
+    @include text(small, 400, 114%);
+    color: $color__font--light;
+  }
+}
+
+.c-option {
+  margin-bottom: 1.875rem;
+  &:last-of-type {
+    margin-bottom: 0;
+  }
+  &__title {
+    width: 100%;
+    margin-bottom: 0.75rem;
+
+    @include text(small, 400, 114%);
+    color: $color__font--subtext;
+  }
+  &__content {
+    display: flex;
+    align-items: center;
+  }
+  &__icon {
+    @include square(1.5rem, 0);
+    padding: 0;
+  }
+  &__date {
+    padding: 0.1875rem 1.25rem;
+    margin-right: 1.875rem;
+
+    background: $color--muted1;
+    border-radius: $radius__input;
+    border: 0.0625rem solid $color__font--subtitle;
+
+    display: flex;
+    align-items: center;
+  }
+  &__text {
+    @include text(small, 400, 114%);
+    color: $color__font--light;
+
+    display: inline-block;
+  }
+  &__input {
+    display: flex;
+    align-items: center;
+  }
+  &__icon {
+    margin-right: 0.5rem;
+
+    display: flex;
+    align-items: center;
+  }
+}
+
+.c-account {
+  $_: &;
+  max-height: 25rem;
+  margin-top: 1.875rem;
+  padding-right: 0.25rem;
+
+  overflow-y: auto;
+  @include scrollbar("");
+  &--edit {
+    margin: 0 0 2.5rem 0;
+  }
+  &__set {
+    margin-bottom: 1.875rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    &:first-of-type {
+      #{$_}__avatar {
+        background: $color--secondary;
+      }
+    }
+    &:nth-of-type(2) {
+      #{$_}__avatar {
+        background: #44a47c;
+      }
+    }
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+  }
+  &__wrapper {
+    display: flex;
+  }
+  &__avatar {
+    @extend .c-modal__avatar;
+    margin: 0 1.25rem 0 0 !important;
+  }
+  &__subtitle {
+    margin-bottom: 0.5rem;
+
+    @include text(extra-small, 500, 116%);
+    color: $color--action;
+  }
+  &__title {
+    margin-bottom: 0.5rem;
+
+    @include text(small, 500, 116%);
+    color: $color__font--light;
+  }
+  &__text {
+    @include text(extra-small, 400, 116%);
+    color: $color__font--subtext;
+
+    display: block;
+  }
+  &__info {
+    height: max-content;
+  }
+  &__btn {
+    padding: 0.375rem 1.25rem;
+    margin-top: 0.75rem;
+  }
+}
+
+.c-permission {
+  $_: &;
+  &__set {
+    margin-bottom: 1.25rem;
+
+    position: relative;
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+  }
+  &__input {
+    margin: 0;
+
+    background-color: $color--muted3;
+
+    position: absolute;
+    left: auto;
+    right: 1.875rem;
+    top: 50%;
+    transform: translateY(-50%);
+    &:checked {
+      box-shadow: none;
+      border: none;
+      accent-color: $color--muted3;
+      background-color: $color--muted3;
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='2' fill='%2335a0db'/%3e%3c/svg%3e") !important;
+      background-size: 1rem;
+      & + #{$_}__label {
+        box-shadow: 0 0 0 0.125rem $color--action;
+      }
+    }
+  }
+  &__label {
+    width: 100%;
+    padding: 1.25rem 1.875rem;
+
+    box-shadow: 0 0 0 0.0625rem $color__font--subtext;
+    border-radius: $radius__block;
+
+    display: flex;
+    align-items: center;
+
+    @include cursor(pointer);
+  }
+  &__title {
+    margin-bottom: 0.5rem;
+
+    @include text(small, 500, 116%);
+    color: $color__font--subtitle;
+  }
+  &__item {
+    margin: 0 0 0.5rem 0;
+
+    @include text(extra-small, 400, 116%);
+    color: $color__font--subtitle;
+  }
+  &__icon {
+    margin-right: 1.875rem;
+  }
+}

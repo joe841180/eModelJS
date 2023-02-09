@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reign Core</title>
+  <!-- Favicon -->
+  <link rel="apple-touch-icon" sizes="180x180" href="./img/new-ui/favicon/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="./img/new-ui/favicon/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="./img/new-ui/favicon/favicon-16x16.png" />
+  <link rel="shortcut icon" type="image/png" href="./img/new-ui/favicon/favicon.ico" />
+  <link rel="manifest" href="./img/new-ui/favicon/site.webmanifest" />
+  <!-- css -->
+  <link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="./sweetalert2/sweetalert2.min.css">
+  <link rel="stylesheet" href="./style/style.css">
+  <link rel="stylesheet" href="./style/jslocal.css" />
+</head>
+
+<body>
+  <main class="u-main">
+    <!-- sidebar menu -->
+    <aside class="c-sidebar">
+      <div class="c-sidebar__logo c-sidebar__logo--main">
+        <img class="e-img e-img--contain" src="./img/new-ui/logo/G_Reigns_main_logo.svg" alt="main_logo">
+      </div>
+      <div class="c-sidebar__logo c-sidebar__logo--core">
+        <img class="e-img e-img--contain" src="./img/new-ui/logo/Reign_core_logo.svg" alt="core_logo">
+      </div>
+      <div class="c-sidebar__hr"></div>
+      <ul class="c-sidebar__list accordion" id="sidebarAccordion">
+        <li class="c-sidebar__item accordion-item">
+          <a id="sidebarOverviewControl" class="c-sidebar__btn">
+            <i class=" c-sidebar__icon" data-icon="overview"></i>
+            <span class="c-sidebar__text">
+              Overview
+            </span>
+          </a>
+        </li>
+        <li class="c-sidebar__item accordion-item">
+          <a id="sidebarAlertManagementControl" class="c-sidebar__btn">
+            <i class="c-sidebar__icon" data-icon="alert"></i>
+            <span class="c-sidebar__text">
+              Alert Management
+            </span>
+          </a>
+        </li>
+        <li class="c-sidebar__item accordion-item">
+          <a id="sidebar5gcControl" class="c-sidebar__btn d-none">
+            <i class="c-sidebar__icon" data-icon="5gc"></i>
+            <span class="c-sidebar__text">
+              5GC
+            </span>
+          </a>
+        </li>
+        <li class="c-sidebar__item accordion-item">
+          <div class="accordion-header" id="sidebarHeadingRAN">
+            <button class="accordion-button c-sidebar__btn c-sidebar__btn--arrow collapsed" type="button"
+              data-bs-toggle="collapse" data-bs-target="#sidebarCollapseRAN" aria-expanded="false"
+              aria-controls="sidebarCollapseRAN">
+              <i class="c-sidebar__icon" data-icon="ran"></i>
+              <span class="c-sidebar__text">
+                RAN
+              </span>
+            </button>
+          </div>
+          <div id="sidebarCollapseRAN" class="accordion-collapse collapse" aria-labelledby="sidebarHeadingRAN"
+            data-bs-parent="#sidebarAccordion">
+            <div id="sidebarRanControl" class="accordion-body c-sidebar__accordion">
+              <!-- <a class="c-sidebar__sub-btn active" href="./RAN-software.html">
+                <i class="c-sidebar__icon" data-icon="ran"></i>
+                <div class="c-sidebar__text">
+                  RAN1
+                </div>
+              </a> -->
+            </div>
+          </div>
+        </li>
+        <li class="c-sidebar__item accordion-item">
+          <div class="accordion-header d-none" id="sidebarHeadingRU">
+            <button class="accordion-button c-sidebar__btn c-sidebar__btn--arrow collapsed" type="button"
+              data-bs-toggle="collapse" data-bs-target="#sidebarCollapseRU" aria-expanded="false"
+              aria-controls="sidebarCollapseRU">
+              <i class="c-sidebar__icon" data-icon="router"></i>
+              <span class="c-sidebar__text">
+                RU
+              </span>
+            </button>
+          </div>
+          <div id="sidebarCollapseRU" class="accordion-collapse collapse" aria-labelledby="sidebarHeadingRU"
+            data-bs-parent="#sidebarAccordion">
+            <div id="sidebarRuControl" class="accordion-body c-sidebar__accordion">
+              <!-- <a class="c-sidebar__sub-btn" href="./RU-software.html">
+                <i class="c-sidebar__icon" data-icon="router"></i>
+                <div class="c-sidebar__text">
+                  RU1
+                </div>
+              </a> -->
+            </div>
+          </div>
+        </li>
+        <li class="c-sidebar__item accordion-item active">
+          <a id="sidebarUEControl" class="c-sidebar__btn">
+            <i class="c-sidebar__icon" data-icon="ue"></i>
+            <span class="c-sidebar__text">
+              UE
+            </span>
+          </a>
+        </li>
+      </ul>
+    </aside>
+    <article class="l-ran">
+      <header class="l-header">
+        <div class="c-tabs">
+          <!-- <a class="c-tabs__tab active" href="./UE-RAN1.html">RAN1</a> -->
+          <!-- <a class="c-tabs__tab" href="./UE-RAN1.html?ranNum=2">RAN2</a> -->
+        </div>
+        <div class="l-header__action">
+          <!-- alert -->
+          <div class="dropdown c-notification">
+            <button id="notifyBellDropdown" type="button"
+              class="e-btn e-btn--icon l-header__icon c-notification__toggle" data-bs-toggle="dropdown"
+              aria-expanded="false">
+              <i class="c-notification__img"></i>
+              <div class="c-notification__badge d-none"></div>
+            </button>
+            <ul id="notifyBellList" class="dropdown-menu c-notification__menu">
+              <!-- <li class="c-notification__item">
+                <span class="c-notification__subtitle">Now</span>
+                <div class="d-flex align-items-center">
+                  <i class="c-notification__icon" data-icon="restart"></i>
+                  <h4 class="c-notification__title">Resume RANs</h4>
+                </div>
+                <p class="c-notification__text">Restart 5GC. Do you want to resume RANs now?</p>
+                <button type="button" class="e-btn e-btn--link c-notification__action">Resume now</button>
+              </li> -->
+            </ul>
+          </div>
+          <div class="dropdown c-dropdown">
+            <button class="btn dropdown-toggle c-dropdown__toggle c-dropdown__toggle--btn e-btn" type="button"
+              data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
+              H
+            </button>
+            <ul class="dropdown-menu c-dropdown__menu l-header__menu l-header__menu--end">
+              <li>
+                <a class="dropdown-item_name dropdown-item c-dropdown__item" href="#">
+                  <i class="c-dropdown__icon c-dropdown__icon--bg e-icon e-icon--right">H</i>
+                  <div>Holly</div>
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-item c-dropdown__item settingsToggle">
+                  <i class="c-dropdown__icon e-icon e-icon--right">
+                    <img class="e-img e-img--contain" src="./img/new-ui/icon/ic_setting_24dp.svg" alt="Export">
+                  </i>
+                  Settings
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-item c-dropdown__item flex-column align-items-start" href="#">
+                  <div class="d-flex">
+                    <i class="c-dropdown__icon e-icon e-icon--right">
+                      <img class="e-img e-img--contain" src="./img/new-ui/icon/icon_about_24dp.svg" alt="Export">
+                    </i>
+                    About Reign Core
+                  </div>
+                  <span class="c-dropdown__text">Version 2.0.1</span>
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-item--out dropdown-item c-dropdown__item">
+                  <i class="c-dropdown__icon e-icon e-icon--right">
+                    <img class="e-img e-img--contain" src="./img/new-ui/icon/ic_logout_24dp.svg" alt="Export">
+                  </i>
+                  Signout
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <section class="l-ran__content u-content">
+        <iframe></iframe>
+      </section>
+      <div id="accountManagement"></div>
+    </article>
+  </main>
+  <script src="./sweetalert2/sweetalert2.all.min.js"></script>
+  <script src="./bootstrap/js/bootstrap.bundle.js"></script>
+  <script src="./js/moment.js"></script>
+  <script>
+    const version = new Date().getTime()
+    // default module
+    document.write(`<script type="module" src="./js/module/menu.js?v=${version}"><\/script>`);
+    document.write(`<script type="module" src="./js/module/timeOut.js?v=${version}"><\/script>`);
+    document.write(`<script src="./js/realtimeApi.js?v=${version}"><\/script>`);
+    // page function
+    document.write(`<script type="module" src="./js/pages/UE/UE_Ran.js?v=${version}"><\/script>`);
+    document.write(`<script type="module" src="./js/grafanaUrl.js?v=${version}"><\/script>`);
+    // account
+    document.write(`<script type="module" src="./js/pages/accountManagement/accountManagementHtml.js?v=${version}"><\/script>`);
+    document.write(`<script type="module" src="./js/pages/accountManagement/accountManagement.js?v=${version}"><\/script>`);
+  </script>
+</body>
+
+</html>

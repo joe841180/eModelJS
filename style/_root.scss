@@ -1,0 +1,18 @@
+:root {
+  --color--primary: #101b1e;
+  --color--secondary: #055d93;
+  --color--action: #35a0db;
+
+  --color--online: var(--color--action);
+  --color--error: #d65050;
+  --color--offline: #4b596c;
+  --color--light: #ffffff;
+  --color--muted1: #232832;
+  --color--muted2: #323741;
+  --color--muted3: #45535e;
+
+  --color__font--light: #ffffff;
+  --color__font--text: #6e7c8e;
+  --color__font--subtitle: #d9d9d9;
+  --color__font--subtext: #909799;
+}
