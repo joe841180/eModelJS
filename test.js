@@ -10,12 +10,17 @@ const test = async () => {
     phone: "3",
     password: "3",
   };
+  console.log(data);
 
   let resLogIn = await httpApi.logIn(data);
-  resLogIn = resLogIn?.data?.access
-  console.log(resLogIn);
-  let test1 = await httpApi.test(resLogIn);
-  console.log(test1);
+
+  // let resAccountProfile = await httpApi.accountProfile();
+  // console.log("resAccountProfile");
+  // console.log(resAccountProfile);
+
+  let test = await httpApi.accountProfile();
+  console.log("test");
+  console.log(test);
   // if (resLogIn.state) {
   //   setCookie("access", resLogIn?.data?.access);
   //   setCookie("refresh", resLogIn?.data?.refresh);

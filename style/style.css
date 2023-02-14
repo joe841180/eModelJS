@@ -306,11 +306,11 @@ table {
   pointer-events: none;
 }
 
-.swal2-radio input:checked~.swal2-label {
+.swal2-radio input:checked ~ .swal2-label {
   color: var(--color--action);
 }
 
-.swal2-radio input:checked~.swal2-label::after {
+.swal2-radio input:checked ~ .swal2-label::after {
   background-image: url("../img/new-ui/icon/ic_file_active_24dp.svg");
 }
 
@@ -1370,10 +1370,10 @@ h6 {
   border: 0;
 }
 
-.c-form__set--btn .c-form__input:focus+.c-form__label,
-.c-form__set--btn .c-form__input--bg:focus+.c-form__label,
-.c-form__set--btn .c-form__input:checked+.c-form__label,
-.c-form__set--btn .c-form__input--bg:checked+.c-form__label {
+.c-form__set--btn .c-form__input:focus + .c-form__label,
+.c-form__set--btn .c-form__input--bg:focus + .c-form__label,
+.c-form__set--btn .c-form__input:checked + .c-form__label,
+.c-form__set--btn .c-form__input--bg:checked + .c-form__label {
   -webkit-box-shadow: 0 0 0 0.1875rem var(--color--action);
   box-shadow: 0 0 0 0.1875rem var(--color--action);
 }
@@ -2246,7 +2246,7 @@ h6 {
   display: block;
 }
 
-.c-tooltip__toggle:hover~.c-tooltip__content {
+.c-tooltip__toggle:hover ~ .c-tooltip__content {
   display: block;
 }
 
@@ -3321,7 +3321,7 @@ h6 {
   align-items: flex-start;
 }
 
-.l-graph__group:hover~.c-popover--center {
+.l-graph__group:hover ~ .c-popover--center {
   display: block;
   top: 0;
   left: 6.25rem;
@@ -3470,7 +3470,7 @@ h6 {
   width: 3.25rem;
 }
 
-.l-graph__item--end:hover~.c-popover--end {
+.l-graph__item--end:hover ~ .c-popover--end {
   display: block;
   top: 0;
   left: 100%;
@@ -3780,7 +3780,7 @@ h6 {
   background-size: 1rem;
 }
 
-.c-permission__input:checked+.c-permission__label {
+.c-permission__input:checked + .c-permission__label {
   -webkit-box-shadow: 0 0 0 0.125rem var(--color--action);
   box-shadow: 0 0 0 0.125rem var(--color--action);
 }
@@ -4776,7 +4776,6 @@ h6 {
   font-size: 1rem !important;
   color: var(--color__font--light);
 }
-
 
 .l-ran .c-modal--aside .c-modal__body {
   height: 31.25rem;
