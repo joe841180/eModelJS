@@ -36,6 +36,40 @@ class api {
         return res;
       });
   }
+
+  async test(token) {
+    let url = this.host + "/account/self/profile/";
+    return fetch(url, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "Authentication": `Bearer ${token}`
+      },
+    })
+      .then(async (res) => {
+        if (!res.ok) {
+          const text = await res.text();
+          throw new Error(text);
+        } else {
+          let response = {
+            state: true,
+            data: await res.json(),
+          };
+          return response;
+        }
+      })
+      .catch(async (err) => {
+        let res = {
+          state: false,
+        };
+        try {
+          res["data"] = JSON.parse(err?.message)["message"];
+        } catch (error) {
+          res["data"] = String(err);
+        }
+        return res;
+      });
+  }
 }
 
 export { api };

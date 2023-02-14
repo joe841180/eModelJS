@@ -11,8 +11,11 @@ const test = async () => {
     password: "3",
   };
 
-  // let resLogIn = await httpApi.logIn(data);
-  // console.log(resLogIn);
+  let resLogIn = await httpApi.logIn(data);
+  resLogIn = resLogIn?.data?.access
+  console.log(resLogIn);
+  let test1 = await httpApi.test(resLogIn);
+  console.log(test1);
   // if (resLogIn.state) {
   //   setCookie("access", resLogIn?.data?.access);
   //   setCookie("refresh", resLogIn?.data?.refresh);

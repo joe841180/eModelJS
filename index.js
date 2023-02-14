@@ -1,6 +1,7 @@
 import { getCookie, setCookie } from "../../module/globalSettings.js";
 import { api } from "../../restfulApi.js";
 
+console.log("test");
 let httpApi = new api();
 //======= sign in =======
 let form = document.querySelector(".l-auth__form");
@@ -50,3 +51,40 @@ async function sendMsg() {
     }
   }
 }
+
+
+async function test() {
+  let url = "http://192.168.0.101:8000/account/self/profile/";
+  return fetch(url, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  })
+    .then(async (res) => {
+      if (!res.ok) {
+        const text = await res.text();
+        throw new Error(text);
+      } else {
+        let response = {
+          state: true,
+          data: await res.json(),
+        };
+        return response;
+      }
+    })
+    .catch(async (err) => {
+      let res = {
+        state: false,
+      };
+      try {
+        res["data"] = JSON.parse(err?.message)["message"];
+      } catch (error) {
+        res["data"] = String(err);
+      }
+      return res;
+    });
+}
+test()
+console.log("test");
