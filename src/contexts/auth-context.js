@@ -1,5 +1,7 @@
 import { createContext, useContext, useEffect, useReducer, useRef } from 'react';
 import PropTypes from 'prop-types';
+import { logIn } from "./connection";
+
 
 const HANDLERS = {
   INITIALIZE: 'INITIALIZE',
@@ -128,7 +130,16 @@ export const AuthProvider = (props) => {
   };
 
   const signIn = async (email, password) => {
-    if (email !== 'demo@devias.io' || password !== 'Password123!') {
+    const data = {
+      // email: "123",
+      phone: "3",
+      password: "3",
+    };
+    console.log("123");
+    let resLogIn = await logIn(data)
+    console.log(resLogIn);
+
+    if (!resLogIn.state) {
       throw new Error('Please check your email and password');
     }
 
@@ -142,7 +153,9 @@ export const AuthProvider = (props) => {
       id: '5e86809283e28b96d2d38537',
       avatar: '/assets/avatars/avatar-anika-visser.png',
       name: 'Anika Visser',
-      email: 'anika.visser@devias.io'
+      email: 'anika.visser@devias.io',
+      access: resLogIn.data.access,
+      refresh: resLogIn.data.refresh,
     };
 
     dispatch({

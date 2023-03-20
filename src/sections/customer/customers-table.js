@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import { format } from 'date-fns';
+import NextLink from 'next/link';
 import {
   Avatar,
   Box,
@@ -12,7 +13,8 @@ import {
   TableHead,
   TablePagination,
   TableRow,
-  Typography
+  Typography,
+  Link
 } from '@mui/material';
 import { Scrollbar } from 'src/components/scrollbar';
 import { getInitials } from 'src/utils/get-initials';
@@ -23,7 +25,7 @@ export const CustomersTable = (props) => {
     items = [],
     onDeselectAll,
     onDeselectOne,
-    onPageChange = () => {},
+    onPageChange = () => { },
     onRowsPerPageChange,
     onSelectAll,
     onSelectOne,
@@ -56,13 +58,13 @@ export const CustomersTable = (props) => {
                   />
                 </TableCell>
                 <TableCell>
-                  Name
+                  First Name
+                </TableCell>
+                <TableCell>
+                  Last Name
                 </TableCell>
                 <TableCell>
                   Email
-                </TableCell>
-                <TableCell>
-                  Location
                 </TableCell>
                 <TableCell>
                   Phone
@@ -70,12 +72,15 @@ export const CustomersTable = (props) => {
                 <TableCell>
                   Signed Up
                 </TableCell>
+                <TableCell>
+                  Detail
+                </TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
               {items.map((customer) => {
                 const isSelected = selected.includes(customer.id);
-                const createdAt = format(customer.createdAt, 'dd/MM/yyyy');
+                // const uploadDate = format(customer.upload_date, 'dd/MM/yyyy');
 
                 return (
                   <TableRow
@@ -101,25 +106,32 @@ export const CustomersTable = (props) => {
                         direction="row"
                         spacing={2}
                       >
-                        <Avatar src={customer.avatar}>
-                          {getInitials(customer.name)}
-                        </Avatar>
                         <Typography variant="subtitle2">
-                          {customer.name}
+                          {customer.first_name}
                         </Typography>
                       </Stack>
+                    </TableCell>
+                    <TableCell>
+                      {customer.last_name}
                     </TableCell>
                     <TableCell>
                       {customer.email}
                     </TableCell>
                     <TableCell>
-                      {customer.address.city}, {customer.address.state}, {customer.address.country}
-                    </TableCell>
-                    <TableCell>
                       {customer.phone}
                     </TableCell>
                     <TableCell>
-                      {createdAt}
+                      {customer.upload_date}
+                    </TableCell>
+                    <TableCell>
+                      <Link
+                        component={NextLink}
+                        href="/customers/account"
+                        underline="none"
+                        variant="subtitle2"
+                      >
+                        詳細資料
+                      </Link>
                     </TableCell>
                   </TableRow>
                 );
