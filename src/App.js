@@ -2,8 +2,10 @@ import { ColorModeContext, useMode } from "./theme";
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import { Routes, Route } from "react-router-dom";
 import Topbar from "./scenes/global/Topbar";
-import Dashboard from "./scenes/global/dashboard";
-import Sidebar from "./scenes/global/Sidebar";
+// import { Sidebar, Menu, MenuItem, SubMenu } from 'react-pro-sidebar';
+import { Link } from 'react-router-dom';
+import Dashboard from "./scenes/dashboard";
+import { Sidebar } from "./scenes/global/Sidebar";
 // import Team from "./scenes/global/team";
 // import Invoices from "./scenes/global/invoices";
 // import Contents from "./scenes/global/contents";
@@ -20,6 +22,16 @@ function App() {
         <CssBaseline />
         <div className="app">
           <Sidebar />
+          {/* <Sidebar>
+              <Menu>
+                <SubMenu label="Charts">
+                  <MenuItem> Pie charts </MenuItem>
+                  <MenuItem> Line charts </MenuItem>
+                </SubMenu>
+                <MenuItem> Documentation </MenuItem>
+                <MenuItem> Calendar </MenuItem>
+              </Menu>
+            </Sidebar> */}
           <main className="content">
             <Topbar />
             <Routes>
