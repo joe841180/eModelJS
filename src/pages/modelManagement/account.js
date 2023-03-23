@@ -22,7 +22,7 @@ const Page = () => (
         <Stack spacing={3}>
           <div>
             <Typography variant="h4">
-              Model's Detail
+              Model's Profile
             </Typography>
           </div>
           <div>
