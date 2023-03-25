@@ -1,10 +1,14 @@
 import axios from "axios";
 
-const HOST = `http://192.168.0.102`
+const HOST = `http://192.168.0.102`;
 
 const axiosConnection = axios.create({
-  baseURL: HOST
-})
+  baseURL: HOST,
+});
+
+axiosConnection.interceptors.request.use((config) => {
+  const token = localStorage.get("");
+});
 
 // 登入
 export async function logIn(data) {
@@ -13,17 +17,17 @@ export async function logIn(data) {
   return fetch(url, {
     method: "POST",
     headers: new Headers({
-      'Content-Type': 'application/json'
+      "Content-Type": "application/json",
     }),
-    body: JSON.stringify(data)
+    body: JSON.stringify(data),
   })
     .then(async (res) => {
       if (res.status === 200) {
-        res = await res.json()
-        window.sessionStorage.setItem('authenticated', 'true');
+        res = await res.json();
+        window.sessionStorage.setItem("authenticated", "true");
         let response = {
           state: true,
-          data: res
+          data: res,
         };
         return response;
       } else {
@@ -52,22 +56,22 @@ export async function searchModel(data) {
   return fetch(url, {
     method: "GET",
     headers: new Headers({
-      'Content-Type': 'application/json',
-      "Authorization": `Bearer ${token}`
-    })
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    }),
   })
     .then(async (res) => {
       if (res.status === 200) {
-        res = await res.json()
+        res = await res.json();
         let response = {
           state: true,
-          data: res
+          data: res,
         };
         return response;
       } else {
         let response = {
           state: false,
-          data: new Error(res)
+          data: new Error(res),
         };
         return response;
       }
@@ -94,22 +98,22 @@ export async function searchModelDetail(id) {
   return fetch(url, {
     method: "GET",
     headers: new Headers({
-      'Content-Type': 'application/json',
-      "Authorization": `Bearer ${token}`
-    })
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    }),
   })
     .then(async (res) => {
       if (res.status === 200) {
-        res = await res.json()
+        res = await res.json();
         let response = {
           state: true,
-          data: res
+          data: res,
         };
         return response;
       } else {
         let response = {
           state: false,
-          data: new Error(res)
+          data: new Error(res),
         };
         return response;
       }
@@ -204,4 +208,3 @@ export async function searchModelDetail(id) {
 //       return res;
 //     });
 // }
-
