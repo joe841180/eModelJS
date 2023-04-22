@@ -23,13 +23,13 @@ const handlers = {
       ...// if payload (user) is provided, then is authenticated
       (user
         ? {
-            isAuthenticated: true,
-            isLoading: false,
-            user,
-          }
+          isAuthenticated: true,
+          isLoading: false,
+          user,
+        }
         : {
-            isLoading: false,
-          }),
+          isLoading: false,
+        }),
     };
   },
   [HANDLERS.SIGN_IN]: (state, action) => {

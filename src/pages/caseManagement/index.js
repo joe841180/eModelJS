@@ -7,51 +7,104 @@ import PlusIcon from "@heroicons/react/24/solid/PlusIcon";
 import { Box, Button, Container, Stack, SvgIcon, Typography } from "@mui/material";
 import { useSelection } from "src/hooks/use-selection";
 import { Layout as DashboardLayout } from "src/layouts/dashboard/layout";
-import { CustomersTable } from "src/sections/customer/customers-table";
-import { CustomersSearch } from "src/sections/customer/customers-search";
+import { CustomersTable } from "src/sections/case/case-table";
+import { CustomersSearch } from "src/sections/case/case-search";
 import { applyPagination } from "src/utils/apply-pagination";
 
 const now = new Date();
+// {
+//   "count": 1,
+//   "next": null,
+//   "previous": null,
+//   "results": [
+//     {
+//       "pk": "c95d1235-12a2-420b-941d-01b73f5a0cb3",
+//       "owner": "1b783f4c-c07f-4fdd-9ba5-87080aa7cb7b",
+//       "case_type": "0",
+//       "title": "test2",
+//       "phone": "09767464",
+//       "email": "gdgdgf@gfdg.com",
+//       "contacter": "yyyy",
+//       "simple_require": "simple_require",
+//       "item_type": 1,
+//       "place": 1,
+//       "create_date": "2023-04-16T18:17:16.619897+08:00",
+//       "update_date": "2023-04-16T18:17:16.619924+08:00",
+//       "public_start": "2023/04/10 00:00",
+//       "public_end": "2023/04/30 00:00",
+//       "audtion_start": "2023/05/20 00:00",
+//       "audtion_end": "2023/05/30 00:00",
+//       "case_start": "2023/06/20 00:00",
+//       "case_end": "2023/06/30 00:00",
+//       "detail_require": "detail_require"
+//     }
+//   ]
+// }
 
 const data = [
   {
-    id: "5e887b209c28ac3dd97f6db5",
-    first_name: "Snow",
-    last_name: "Jon",
-    email: "jonsnow@gmail.com",
-    phone: "(665)121-5454",
-    upload_date: "03/12/2022",
+    "pk": "c95d1235-12a2-420b-941d-01b73f5a0cb3",
+    "owner": "1b783f4c-c07f-4fdd-9ba5-87080aa7cb7b",
+    "case_type": "0",
+    "title": "test2",
+    "phone": "09767464",
+    "email": "gdgdgf@gfdg.com",
+    "contacter": "apple",
+    "simple_require": "simple_require",
+    "item_type": 1,
+    "place": 1,
+    "create_date": "2023-04-16T18:17:16.619897+08:00",
+    "update_date": "2023-04-16T18:17:16.619924+08:00",
+    "public_start": "2023/04/10 00:00",
+    "public_end": "2023/04/30 00:00",
+    "audtion_start": "2023/05/20 00:00",
+    "audtion_end": "2023/05/30 00:00",
+    "case_start": "2023/06/20 00:00",
+    "case_end": "2023/06/30 00:00",
+    "detail_require": "detail_require"
   },
   {
-    id: "5e887b209c28ac3dd97f6db1",
-    first_name: "Snow",
-    last_name: "Jon",
-    email: "jonsnow@gmail.com",
-    phone: "(665)121-5454",
-    upload_date: "03/12/2022",
+    "pk": "c95d1235-12a2-420b-941d-01b73f5a0cb4",
+    "owner": "1b783f4c-c07f-4fdd-9ba5-87080aa7cb7b",
+    "case_type": "0",
+    "title": "test2",
+    "phone": "09767464",
+    "email": "gdgdgf@gfdg.com",
+    "contacter": "apple",
+    "simple_require": "simple_require",
+    "item_type": 1,
+    "place": 1,
+    "create_date": "2023-04-16T18:17:16.619897+08:00",
+    "update_date": "2023-04-16T18:17:16.619924+08:00",
+    "public_start": "2023/04/10 00:00",
+    "public_end": "2023/04/30 00:00",
+    "audtion_start": "2023/05/20 00:00",
+    "audtion_end": "2023/05/30 00:00",
+    "case_start": "2023/06/20 00:00",
+    "case_end": "2023/06/30 00:00",
+    "detail_require": "detail_require"
   },
   {
-    id: "5e887b209c28ac3dd97f6db9",
-    first_name: "Snow",
-    last_name: "Jon",
-    email: "jonsnow@gmail.com",
-    phone: "(665)121-5454",
-    upload_date: "03/12/2022",
+    "pk": "c95d1235-12a2-420b-941d-01b73f5a0cb5",
+    "owner": "1b783f4c-c07f-4fdd-9ba5-87080aa7cb7b",
+    "case_type": "0",
+    "title": "test2",
+    "phone": "09767464",
+    "email": "gdgdgf@gfdg.com",
+    "contacter": "apple",
+    "simple_require": "simple_require",
+    "item_type": 1,
+    "place": 1,
+    "create_date": "2023-04-16T18:17:16.619897+08:00",
+    "update_date": "2023-04-16T18:17:16.619924+08:00",
+    "public_start": "2023/04/10 00:00",
+    "public_end": "2023/04/30 00:00",
+    "audtion_start": "2023/05/20 00:00",
+    "audtion_end": "2023/05/30 00:00",
+    "case_start": "2023/06/20 00:00",
+    "case_end": "2023/06/30 00:00",
+    "detail_require": "detail_require"
   },
-  // {
-  //   id: '5e887b209c28ac3dd97f6db5',
-  //   address: {
-  //     city: 'Atlanta',
-  //     country: 'USA',
-  //     state: 'Georgia',
-  //     street: '1865  Pleasant Hill Road'
-  //   },
-  //   avatar: '/assets/avatars/avatar-fran-perez.png',
-  //   createdAt: subDays(subHours(now, 1), 2).getTime(),
-  //   email: 'fran.perez@devias.io',
-  //   name: 'Fran Perez',
-  //   phone: '712-351-5711'
-  // },
 ];
 
 const useCustomers = (data, page, rowsPerPage) => {
@@ -63,7 +116,7 @@ const useCustomers = (data, page, rowsPerPage) => {
 
 const useCustomerIds = (customers) => {
   return useMemo(() => {
-    return customers.map((customer) => customer.id);
+    return customers.map((customer) => customer.pk);
   }, [customers]);
 };
 
@@ -88,7 +141,7 @@ const Page = () => {
   return (
     <>
       <Head>
-        <title>Model</title>
+        <title>Case</title>
       </Head>
       <Box
         component="main"
@@ -101,7 +154,7 @@ const Page = () => {
           <Stack spacing={3}>
             <Stack direction="row" justifyContent="space-between" spacing={4}>
               <Stack spacing={1}>
-                <Typography variant="h4">Model</Typography>
+                <Typography variant="h4">Case</Typography>
                 <Stack alignItems="center" direction="row" spacing={1}>
                   <Button
                     color="inherit"
@@ -138,7 +191,9 @@ const Page = () => {
                 </Button>
               </div>
             </Stack>
+            {/* 搜尋BAR */}
             <CustomersSearch useCustomers={useCustomers} rowsPerPage={rowsPerPage} setSearchResult={setSearchResult} />
+            {/* 搜尋結果 */}
             {searchResult.length > 0 && (
               <CustomersTable
                 count={data.length}

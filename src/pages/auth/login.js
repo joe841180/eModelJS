@@ -1,5 +1,7 @@
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import Cookies from "universal-cookie";
+import { unwrapResult } from '@reduxjs/toolkit'
 import Head from "next/head";
 import NextLink from "next/link";
 import { useRouter } from "next/navigation";
@@ -20,13 +22,33 @@ import {
 import { useAuth } from "src/hooks/use-auth";
 import { Layout as AuthLayout } from "src/layouts/auth/layout";
 // redux
-import { authActs } from "src/store/auth";
+import { axiosLogin, authActs, selectAuthentication } from "src/store/auth";
+import * as axiosHttp from "src/axiosConnection";
 
 const Page = () => {
+  // slices
   const dispatch = useDispatch();
+  const { status, isAuthenticated } = useSelector(selectAuthentication)
+
   const router = useRouter();
   const auth = useAuth();
   const [method, setMethod] = useState("email");
+
+  const cookies = new Cookies()
+
+  useEffect(() => {
+    var storage = window.top.sessionStorage;
+    sessionStorage.setItem("test", "123")
+
+
+    var sessionId = storage.getItem("UNEXPECTED_TERMINATION");
+    // console.log("sessionId");
+    // console.log(sessionId);
+  }, [])
+
+
+
+
   const formik = useFormik({
     initialValues: {
       phone: "",
@@ -40,13 +62,12 @@ const Page = () => {
     }),
     onSubmit: async (values, helpers) => {
       try {
-        dispatch(
-          authActs.login({
+        const login = await dispatch(
+          axiosLogin({
             email: values.email,
             password: values.password,
           })
-        );
-        // await auth.signIn(values.email, values.password);
+        )
         router.push("/");
       } catch (err) {
         helpers.setStatus({ success: false });

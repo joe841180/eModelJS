@@ -1,93 +1,37 @@
 import axios from "axios";
+import Cookies from "universal-cookie";
 
+const cookies = new Cookies()
 const HOST = `http://192.168.0.102`;
 
-const axiosConnection = axios.create({
+const axiosConfig = axios.create({
   baseURL: HOST,
 });
 
-axiosConnection.interceptors.request.use((config) => {
-  const token = localStorage.get("");
-});
+// axiosConfig.interceptors.request.use((response) => {
+//   return response
+// }, (err) => {
+//   console.log("123444");
+//   console.log(err);
+//   const { response } = err
+//   if (response.status === 401) {
+//     localStorage.removeItem("authenticated")
+//     cookies.remove("authenticated")
+//   }
+// });
+
 
 // 登入
-export async function logIn(data) {
-  let url = host + "/account/login/";
-
-  return fetch(url, {
-    method: "POST",
-    headers: new Headers({
-      "Content-Type": "application/json",
-    }),
-    body: JSON.stringify(data),
-  })
-    .then(async (res) => {
-      if (res.status === 200) {
-        res = await res.json();
-        window.sessionStorage.setItem("authenticated", "true");
-        let response = {
-          state: true,
-          data: res,
-        };
-        return response;
-      } else {
-        throw new Error(res);
-      }
-    })
-    .catch(async (err) => {
-      console.log(err);
-      let res = {
-        state: false,
-      };
-      try {
-        res["data"] = err.response.data;
-      } catch (error) {
-        res["data"] = String(err);
-      }
-      return res;
-    });
+export const logIn = async (data) => {
+  console.log(data);
+  return axiosConfig.post("/account/login/", data)
 }
 
 // 搜尋/進階搜尋
-export async function searchModel(data) {
-  let url = host + "/model/";
-  let token = await getCookie("access");
 
-  return fetch(url, {
-    method: "GET",
-    headers: new Headers({
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
-    }),
-  })
-    .then(async (res) => {
-      if (res.status === 200) {
-        res = await res.json();
-        let response = {
-          state: true,
-          data: res,
-        };
-        return response;
-      } else {
-        let response = {
-          state: false,
-          data: new Error(res),
-        };
-        return response;
-      }
-    })
-    .catch(async (err) => {
-      console.log(err);
-      let res = {
-        state: false,
-      };
-      try {
-        res["data"] = err.response.data;
-      } catch (error) {
-        res["data"] = String(err);
-      }
-      return res;
-    });
+// let test = await axiosHttp.searchModel({ gender: 0 })
+export const searchModel = async (data) => {
+  return axiosConfig.get("/model/", { params: data })
 }
 
 // 查閱用戶詳細資料
@@ -208,3 +152,6 @@ export async function searchModelDetail(id) {
 //       return res;
 //     });
 // }
+
+
+export default axiosConfig

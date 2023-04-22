@@ -34,7 +34,6 @@ export const CustomersSearch = (props) => {
     rowsPerPage,
   } = props
   const handleSearch = () => {
-    console.log('999999');
     setSearchResult((prevState) => data)
   }
 
@@ -44,7 +43,7 @@ export const CustomersSearch = (props) => {
       <OutlinedInput
         defaultValue=""
         fullWidth
-        placeholder="Search model"
+        placeholder="Search case"
         endAdornment={
           <IconButton onClick={handleSearch} type="button" aria-label="search">
             <SearchIcon />

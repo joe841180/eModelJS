@@ -1,8 +1,66 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { logIn } from "../contexts/connection";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import axiosConfig, * as axiosHttp from "src/axiosConnection";
+// import { logIn } from "../contexts/connection";
+// import axios from "axios";
+
+
+export const axiosLogin = createAsyncThunk("authentication/login", async (payload) => {
+  try {
+
+    console.log("payload123");
+    console.log(payload);
+    payload = {
+      phone: "3",
+      password: "3",
+    };
+    console.log(payload);
+
+    // fetch('http://192.168.0.102/account/login/', {
+    //   method: "POST",
+    //   headers: new Headers({
+    //     'Content-Type': 'application/json'
+    //   }),
+    //   body: JSON.stringify(payload)
+    // })
+    //   .then(async (res) => {
+    //     if (res.status === 200) {
+    //       res = await res.json()
+    //       console.log("fetch");
+    //       console.log(res);
+    //     } else {
+    //       throw new Error(res);
+    //     }
+    //   })
+
+    // 
+    // const response = await logIn(payload);
+    // console.log("response");
+    // console.log(response);
+    // if (!response.state) throw response.data
+
+    // 
+    const response = await axiosHttp.logIn(payload)
+    axiosConfig.interceptors.request.use((config) => {
+      const token = response.data.access
+      const refresh = response.data.refresh
+      config.headers.Authorization = `Bearer ${token}`
+
+      localStorage.setItem("authenticated", "true")
+      return config
+    });
+
+    return response.data;
+  } catch (error) {
+    console.log('error');
+    console.log(error);
+    throw error.message
+  }
+});
 
 const initialAuthState = {
+  status: 0, // 0-loading 1-success 2-fail
   isAuthenticated: false,
+  token: {},
   accountInfo: {},
 };
 
@@ -10,33 +68,6 @@ const authSlice = createSlice({
   name: "authentication",
   initialState: initialAuthState,
   reducers: {
-    login: (state, action) => {
-      if (action.payload.email !== "demo@devias.io" || action.payload.password !== "Password123!") {
-        throw new Error("Please check your email and password");
-      }
-      console.log("123");
-
-      try {
-        const data = {
-          // email: "123",
-          phone: "3",
-          password: "3",
-        };
-
-        let resLogIn = logIn(data);
-        console.log(resLogIn);
-        if (!resLogIn.state) {
-          throw new Error("Please check your email and password");
-        }
-
-        // localStorage.setItem("access", "true");
-        // localStorage.setItem("refresh", "true");
-      } catch (err) {
-        console.error(err);
-      }
-
-      state.isAuthenticated = true;
-    },
     logout: (state, action) => {
       state.isAuthenticated = false;
     },
@@ -53,7 +84,25 @@ const authSlice = createSlice({
       state.accountInfo = user;
     },
   },
+  extraReducers(builder) {
+    builder
+      .addCase(axiosLogin.pending, (state, { payload }) => {
+        console.log('pending');
+        state.status = 0
+      })
+      .addCase(axiosLogin.fulfilled, (state, { payload }) => {
+        console.log('fulfilled');
+        state.status = 1;
+        state.accountInfo = payload;
+        state.isAuthenticated = true;
+      })
+      .addCase(axiosLogin.rejected, (state, { payload }) => {
+        console.log("rejected");
+        state.status = 2;
+      })
+  }
 });
 
+export const selectAuthentication = (state) => state.authentication;
 export const authActs = authSlice.actions;
 export default authSlice.reducer;

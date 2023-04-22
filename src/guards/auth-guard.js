@@ -1,12 +1,15 @@
 import { useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
-import { useAuthContext } from 'src/contexts/auth-context';
+
+// redux
+import { useSelector } from "react-redux";
+import { selectAuthentication } from "src/store/auth";
 
 export const AuthGuard = (props) => {
   const { children } = props;
   const router = useRouter();
-  const { isAuthenticated } = useAuthContext();
+  const { status, isAuthenticated } = useSelector(selectAuthentication)
   const ignore = useRef(false);
   const [checked, setChecked] = useState(false);
 

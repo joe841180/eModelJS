@@ -17,6 +17,7 @@ import {
 import dayjs from 'dayjs';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { Stack, width } from "@mui/system";
+import { Album } from "../others/album";
 
 const switchList = [
   "is_public",
@@ -519,6 +520,47 @@ const profileSettings = {
   },
 };
 
+const tempAlbum = [
+  {
+    img: 'https://images.unsplash.com/photo-1551963831-b3b1ca40c98e',
+    title: 'Breakfast',
+    author: '@bkristastucchio',
+    rows: 2,
+    cols: 2,
+    featured: true,
+  },
+  {
+    img: 'https://images.unsplash.com/photo-1551782450-a2132b4ba21d',
+    title: 'Burger',
+    author: '@rollelflex_graphy726',
+  },
+  {
+    img: 'https://images.unsplash.com/photo-1522770179533-24471fcdba45',
+    title: 'Camera',
+    author: '@helloimnik',
+  },
+  {
+    img: 'https://images.unsplash.com/photo-1444418776041-9c7e33cc5a9c',
+    title: 'Coffee',
+    author: '@nolanissac',
+    cols: 2,
+  },
+  {
+    img: 'https://images.unsplash.com/photo-1533827432537-70133748f5c8',
+    title: 'Hats',
+    author: '@hjrc33',
+    cols: 2,
+  },
+  {
+    img: 'https://images.unsplash.com/photo-1558642452-9d2a7deb7f62',
+    title: 'Honey',
+    author: '@arwinneil',
+    rows: 2,
+    cols: 2,
+    featured: true,
+  },
+];
+
 export const AccountProfileDetails = () => {
   // TABS
   const [currentTab, setCurrentTab] = useState('profile');
@@ -623,7 +665,16 @@ export const AccountProfileDetails = () => {
             label="Settings"
             value="settings"
           />
+          <Tab
+            label="Albums"
+            value="albums"
+          />
+          <Tab
+            label="Consumption"
+            value="consumption"
+          />
         </Tabs>
+        {/* profile/settings 都是用同一個useState */}
         {currentTab === 'profile' && (
           <>
             {/* <CardHeader subheader="The information can be edited" title="Profile" /> */}
@@ -734,10 +785,26 @@ export const AccountProfileDetails = () => {
             </CardContent>
           </>
         )}
-        <Divider />
-        <CardActions sx={{ justifyContent: "flex-end" }}>
-          <Button onClick={handleSubmit} variant="contained">Save</Button>
-        </CardActions>
+        {currentTab === 'albums' && (
+          <Album albumData={tempAlbum}></Album>
+        )}
+
+        {currentTab === 'consumption' && (
+          <>
+            <Divider />
+            <CardActions sx={{ justifyContent: "flex-end" }}>
+              <Button onClick={handleSubmit} variant="contained">Save</Button>
+            </CardActions>
+          </>
+        )}
+
+        <>
+          <Divider />
+          <CardActions sx={{ justifyContent: "flex-end" }}>
+            <Button onClick={handleSubmit} variant="contained">Save</Button>
+          </CardActions>
+        </>
+
       </Card>
     </form>
   );

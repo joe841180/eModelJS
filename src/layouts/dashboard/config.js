@@ -28,6 +28,15 @@ export const items = [
     ),
   },
   {
+    title: "Case Management",
+    path: "/caseManagement",
+    icon: (
+      <SvgIcon fontSize="small">
+        <UsersIcon />
+      </SvgIcon>
+    ),
+  },
+  {
     title: "Companies",
     path: "/companies",
     icon: (
